@@ -22,7 +22,7 @@ def pregunta_01():
     data = pd.read_csv("data.csv")
 
     # Cree un objeto de tipo `PolynomialFeatures` con grado `2`
-    poly = polynomialfeatures(degree = 2)
+    poly = PolynomialFeatures(degree = 2)
 
     # Transforme la columna `x` del dataset `data` usando el objeto `poly`
     x_poly = poly.fit_transform(data[["x"]]).round(3)
@@ -50,7 +50,7 @@ def pregunta_02():
         y_pred = np.dot(x_poly, params)
 
         # Calcule el error
-        error = (y - y/pred)/2
+        error = (y - y_pred)/2
 
         # Calcule el gradiente
         gradient = 2*np.sum(np.multiply(x_poly,np.array(error)[:,np.newaxis]),axis=0)
